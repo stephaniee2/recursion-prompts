@@ -8,7 +8,7 @@
 // factorial(5); // 120
 var factorial = function(n) {
 	if(n<0){return null}
-	if(n===0){
+	if(n===1){
 		return 1;
 	} else {
 		return n*factorial(n-1)
@@ -18,14 +18,16 @@ var factorial = function(n) {
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
-	// if array.length is 0, return 0
-	// else return array[i] + sum(array with first num taken out)
-	for(let i=0; i<array.length; i++){
-		if (array.length === 0){
-			return 0
-		} else {
-			return array[i] + sum(array.shift()) 
-		}
+	//base case: if array length is 1, return array[0]  //[6]
+	//work: if array length is greater than 1, add array[0] to array.slice(0,1)  //[-2,3.-4.5.6]
+	if(array.length === 0) {
+		return 0;
+	} else if(array.length === 1){
+		return array[0];
+	} else {
+		if(array.length > 1){
+			return array[0] + sum(array.slice(1));
+		};
 	}
 };
 
