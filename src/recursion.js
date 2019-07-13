@@ -7,29 +7,25 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
-	//base case: if n is 1 return n
-	//work: if n is NOT 1, factorial(n-1)
-	if(n<0){return null
-	} else if(n === 0){
+	if(n<0){return null}
+	if(n===0){
 		return 1;
 	} else {
-		return n * factorial(n-1)
+		return n*factorial(n-1)
 	}
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
-	//base case: if array length is 1, return array[0]  //[6]
-	//work: if array length is greater than 1, add array[0] to array.slice(0,1)  //[-2,3.-4.5.6]
-	if(array.length === 0) {
-		return 0;
-	} else if(array.length === 1){
-		return array[0];
-	} else {
-		if(array.length > 1){
-			return array[0] + sum(array.slice(1));
-		};
+	// if array.length is 0, return 0
+	// else return array[i] + sum(array with first num taken out)
+	for(let i=0; i<array.length; i++){
+		if (array.length === 0){
+			return 0
+		} else {
+			return array[i] + sum(array.shift()) 
+		}
 	}
 };
 
@@ -531,10 +527,10 @@ var replaceKeysInObj = function(obj, oldKey, newKey) {
 		//set newKey in updatedObj
 		//recurse with updatedObj
 	
-	let newObj = obj;
-	newObj.test = 'TEST';
-	console.log(obj)
-	console.log(newObj)
+	// let newObj = obj;
+	// newObj.test = 'TEST';
+	// console.log(obj)
+	// console.log(newObj)
 
 
 };
@@ -562,13 +558,25 @@ var nthFibo = function(n) {
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(array) {
-	
+	//base case: if array length is 1, return array[0]
+	//recursive case: concat upper cased array[0]
+	if(array.length === 0){
+		return [];
+	}
+	return [array[0].toUpperCase()].concat(capitalizeWords(array.slice(1)))
 };
+// console.log(capitalizeWords(['i', 'am', 'learning', 'recursion']))
+
 
 // 28. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car','poop','banana']); // ['Car','Poop','Banana']
 var capitalizeFirst = function(array) {
+	if(array.length === 0){
+		return [];
+	}
+	return [array[0][0].toUpperCase()].concat(capitalizeFirst(array.slice(1)))
 };
+console.log(capitalizeFirst(['car','poop','banana']))
 
 // 29. Return the sum of all even numbers in an object containing nested objects.
 // var obj1 = {
